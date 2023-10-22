@@ -19,7 +19,7 @@ DB::table('hasil')->truncate();
                             <div class="tab-content" id="myTabContent">
                                 @foreach($jurusan as $row)
                                     <div class="tab-pane fade show {{$row->id==1?'active':''}}" id="custom-{{$row->id}}">
-                                            <h1>Nilai</h1>
+                                            <h1>Nilai {{$row->jurusan}}</h1>
                                             <table class="datatable-init table" data-nk-container="table-responsive table-border">
                                             <thead>
                                                 <tr>
