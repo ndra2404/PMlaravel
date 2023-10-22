@@ -31,8 +31,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/bobot', [SiswaController::class, 'bobot'])->name('bobot');
     Route::get('/kriteria', [SiswaController::class, 'kriteria'])->name('kriteria');
     Route::get('/nilai', [SiswaController::class, 'nilai'])->name('nilai');
+    Route::any('/nilai/{id}', [SiswaController::class, 'nilaiEdit'])->name('nilai.edit');
     Route::any('/addNilai', [SiswaController::class, 'addNilai'])->name('addNilai');
-    Route::get('/nilaiMinimal', [SiswaController::class, 'nilaiMinimal'])->name('nilaiMinimal');
+    Route::get('/minimal', [SiswaController::class, 'nilaiMinimal'])->name('nilaiMinimal');
     Route::any('/addNilaiMinimal/{id}', [SiswaController::class, 'addNilaiMinimal'])->name('addNilaiMinimal');
 
     //PM

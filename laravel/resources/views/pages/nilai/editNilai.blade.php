@@ -12,10 +12,9 @@
                                 <div class="row g-3 gx-gs">
                                     @foreach($kriterias as $row)
                                     @php
-                                    $h=DB::table('nilai_minimal')->where('id_kriteria',$row->id)
+                                    $h = DB::table('nilai')->where('id_siswa',$id)
                                     ->select('nilai')
-                                    ->where('id_jurusan',$id)->first();
-
+                                    ->where('id_kriteria',$row->id)->first();
                                     $nilai = $h->nilai??0;
                                     @endphp
                                     <div class="col-md-6">
@@ -41,7 +40,7 @@
                                 </div>
                                 <div style='margin-top:10px'>
                                     <button type='submit' class='btn btn-primary'>Save</button>
-                                    <a href="{{url('minimal')}}" class='btn btn-warning'>Cancel</a>
+                                    <a href="{{url('nilai')}}" class='btn btn-warning'>Cancel</a>
                                 </div>
                             </form>
                         </div>

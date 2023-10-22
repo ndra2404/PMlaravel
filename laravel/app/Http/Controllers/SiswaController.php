@@ -47,10 +47,9 @@ class SiswaController extends Controller
         return view('pages.kriteria.bobot',compact('siswas'));
     }
     function nilai(){
-        $nilais = DB::table('nilai')->Join('siswa','siswa.id','=','nilai.id_siswa')
-        ->join('kriterias as c','c.id','=','nilai.id_kriteria')
-        ->select('nilai','nama','kriteria','nilai.id')->get();
-        return view('pages.nilai.index',compact('nilais'));
+        $siswas = DB::table('siswa')->get();
+        $kriterias = DB::table('kriterias')->get();
+        return view('pages.nilai.index',compact('siswas','kriterias'));
     }
     function nilaiMinimal(){
         $nilais = DB::table('nilai')->Join('siswa','siswa.id','=','nilai.id_siswa')
@@ -63,18 +62,25 @@ class SiswaController extends Controller
         if ($request->isMethod('post')) {
             print_r($request->all());
             foreach($request->input('kriteria') as $key=>$value){
-                $nm = new nilaiMinimalModel();
-                $nm->id_jurusan = $id;
-                $nm->id_kriteria = $key;
-                $nm->nilai = $value;
-                $nm->save();
+                $h=DB::table('nilai_minimal')->where('id_kriteria',$key)->where('id_jurusan',$id)->first();
+                if($h){
+                    DB::table('nilai_minimal')->where('id_kriteria',$key)->where('id_jurusan',$id)->update([
+                        'nilai'=>$value
+                    ]);
+                }else{
+                    $nm = new nilaiMinimalModel();
+                    $nm->id_jurusan = $id;
+                    $nm->id_kriteria = $key;
+                    $nm->nilai = $value;
+                    $nm->save();
+                }
             }
             return redirect('/nilaiMinimal')->with('status', 'Data berhasil ditambahkan');
         }
         $kriterias = DB::table('kriterias')->get();
         $jenisInt = DB::table('jenis')->where('jenis',0)->get();
         $jenisHuruf = DB::table('jenis')->where('jenis',1)->get();
-        return view('pages.nilai.addNilaiMinimal',compact('kriterias','jenisInt','jenisHuruf'));
+        return view('pages.nilai.addNilaiMinimal',compact('kriterias','jenisInt','jenisHuruf','id'));
     }
     function addNilai(Request $request){
         if ($request->isMethod('post')) {
@@ -92,5 +98,19 @@ class SiswaController extends Controller
         $jenisHuruf = DB::table('jenis')->where('jenis',1)->get();
         $siswas = DB::table('siswa')->get();
         return view('pages.nilai.addNilai',compact('kriterias','jenisInt','jenisHuruf','siswas'));
+    }
+    function nilaiEdit($id,Request $request){
+        if ($request->isMethod('post')) {
+            foreach($request->input('kriteria') as $key=>$value){
+                DB::table('nilai')->where('id_kriteria',$key)->where('id_siswa',$id)->update([
+                    'nilai'=>$value
+                ]);
+            }
+            return redirect('/nilai')->with('status', 'Data berhasil diubah');
+        }
+        $kriterias = DB::table('kriterias')->get();
+        $jenisInt = DB::table('jenis')->where('jenis',0)->get();
+        $jenisHuruf = DB::table('jenis')->where('jenis',1)->get();
+        return view('pages.nilai.editNilai',compact('kriterias','jenisInt','jenisHuruf','id'));
     }
 }

@@ -25,7 +25,7 @@
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item"><a href="{{url('kriteria')}}"
                                                 class="nk-menu-link"><span class="nk-menu-text">Kriteria</span></a></li>
-                                        <li class="nk-menu-item"><a href="{{url('nilaiMinimal')}}"
+                                        <li class="nk-menu-item"><a href="{{url('minimal')}}"
                                                 class="nk-menu-link"><span class="nk-menu-text">Nilai Minimal</span></a>
                                         </li>
                                         <li class="nk-menu-item"><a href="{{url('bobot')}}"

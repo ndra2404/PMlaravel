@@ -14,13 +14,12 @@
                         <div class="card">
                             <div class="card-body">
                             <h1>{{$ju->jurusan}}</h1>
-                            <a href="{{url('addNilaiMinimal/'.$ju->id)}}" class='btn btn-primary btn-sm' style='margin-bottom:10px'>Add</a>
+                            <a href="{{url('addNilaiMinimal/'.$ju->id)}}" class='btn btn-primary btn-sm' style='margin-bottom:10px'>Add/Update</a>
                             <table class="datatable-init table" data-nk-container="table-responsive table-border">
                                     <thead>
                                         <tr>
                                             <th><span class="overline-title">Kriteria</span></th>
                                             <th><span class="overline-title">Nilai</span></th>
-                                            <th><span class="overline-title">Action</span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -34,10 +33,6 @@
                                         <tr>
                                             <td>{{$nilai->kriteria}}</td>
                                             <td>{{$nilai->nilai}}</td>
-                                            <td>
-                                                <a href="{{url('nilaiMinimal/'.$nilai->id)}}" class="btn btn-primary btn-sm"><em class="icon ni ni-edit"></em></a>
-                                                <a href="{{url('nilaiMinimal/delete/'.$nilai->id)}}" class="btn btn-danger btn-sm"><em class="icon ni ni-trash"></em></a>
-                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

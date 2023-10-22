@@ -17,20 +17,32 @@
                                 <thead>
                                     <tr>
                                         <th><span class="overline-title">Nama</span></th>
-                                        <th><span class="overline-title">Asal Sekolah</span></th>
-                                        <th><span class="overline-title">Nilai</span></th>
+                                        @foreach($kriterias as $row)
+                                        <th><span class="overline-title">{{$row->kriteria}}</span></th>
+                                        @endforeach
                                         <th><span class="overline-title">Action</span></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($nilais as $nilai)
+                                    @foreach($siswas as $nilai)
                                     <tr>
                                         <td>{{$nilai->nama}}</td>
-                                        <td>{{$nilai->kriteria}}</td>
-                                        <td>{{$nilai->nilai}}</td>
+                                        @foreach($kriterias as $row)
+                                            @php
+                                            $id = $nilai->id;
+                                            $h = DB::table('nilai')
+                                            ->where('id_siswa',$id)
+                                            ->where('id_kriteria',$row->id)
+                                            ->select('nilai')
+                                            ->first();
+                                            $t = $h->nilai??0;
+                                            @endphp
+                                            <td>{{$t}}</td>
+                                        @endforeach
                                         <td>
-                                            <a href="{{url('siswa/'.$nilai->id)}}" class="btn btn-primary btn-sm"><em class="icon ni ni-edit"></em></a>
-                                            <a href="{{url('siswa/delete/'.$nilai->id)}}" class="btn btn-danger btn-sm"><em class="icon ni ni-trash"></em></a>
+                                            @if(isset($nilai->id))
+                                            <a href="{{url('nilai/'.$nilai->id)}}" class="btn btn-primary btn-sm"><em class="icon ni ni-edit"></em></a>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
