@@ -10,18 +10,6 @@
                             <form action="" method="post">
                                 @csrf
                                 <div class="row g-3 gx-gs">
-                                <div class="col-md-6">
-                                        <div class="form-group"><label class="form-label">Siswa</label>
-                                            <div class="form-control-wrap">
-                                                <select class="form-select" name='siswa' data-sort="false">
-                                                    <option value="">Select Choose</option>
-                                                        @foreach($siswas as $ji)
-                                                        <option value="{{$ji->id}}">{!!$ji->nama!!}</option>
-                                                        @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
                                     @foreach($kriterias as $row)
                                     <div class="col-md-6">
                                         <div class="form-group"><label class="form-label">{{$row->kriteria}}</label>

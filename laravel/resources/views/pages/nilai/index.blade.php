@@ -5,7 +5,11 @@
         <div class="nk-content-inner">
             <div class="nk-content-body">
                 <div class="row g-gs">
-
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <div class="card">
                         <div class="card-body">
                         <a href="{{url('addNilai')}}" class='btn btn-primary btn-sm' style='margin-bottom:10px'>Add</a>
