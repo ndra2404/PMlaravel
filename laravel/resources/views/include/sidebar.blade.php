@@ -17,6 +17,9 @@
                                         <li class="nk-menu-item"><a href="{{url('nilai')}}"
                                                 class="nk-menu-link"><span class="nk-menu-text">Nilai</span></a>
                                         </li>
+                                        <li class="nk-menu-item"><a href="{{url('jurusan')}}"
+                                                class="nk-menu-link"><span class="nk-menu-text">Jurusan</span></a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
