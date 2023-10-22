@@ -10,10 +10,6 @@
     <title>Analytics - NioBoard Responsive Admin Dashboard Template</title>
     <link rel="shortcut icon" href="images/favicon.png">
     <link rel="stylesheet" href="{{url('assets')}}/css/style20d4.css?v1.1.2">
-    <script src="{{url('assets')}}/js/bundle.js"></script>
-    <script src="{{url('assets')}}/js/scripts.js"></script>
-    <script src="{{url('assets')}}/js/charts/analytics-chart.js"></script>
-    <script src="{{url('assets')}}/js/data-tables/data-tables.js"></script>
 </head>
 
 <body class="nk-body" data-sidebar-collapse="lg" data-navbar-collapse="lg">
@@ -80,4 +76,8 @@
 
 <!-- Mirrored from html.nioboard.themenio.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Jun 2023 12:26:41 GMT -->
 
+<script src="{{url('assets')}}/js/bundle.js"></script>
+    <script src="{{url('assets')}}/js/scripts.js"></script>
+    <script src="{{url('assets')}}/js/charts/analytics-chart.js"></script>
+    <script src="{{url('assets')}}/js/data-tables/data-tables.js"></script>
 </html>

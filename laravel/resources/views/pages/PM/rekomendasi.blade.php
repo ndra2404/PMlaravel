@@ -20,7 +20,7 @@
                                 <tbody>
                                     @foreach($siswa as $sis)
                                     @php
-                                        $rekomendasi = "";
+                                        $rekomendasi = "-";
                                         $angka = 0;
                                     @endphp
                                     <tr>
@@ -30,12 +30,14 @@
                                             $h = DB::table('hasil')->where('id_jurusan',$row->id)
                                             ->where('id_siswa',$sis->id)
                                             ->first();
-                                            if($angka<$h->hasil){
-                                                $rekomendasi = $row->jurusan;
-                                                $angka = $h->hasil;
+                                            if(isset($h->hasil)){
+                                                if($angka<$h->hasil??0){
+                                                    $rekomendasi = $row->jurusan;
+                                                    $angka = $h->hasil??0;
+                                                }
                                             }
                                         @endphp
-                                        <td>{{$h->hasil}}</td>
+                                        <td>{{$h->hasil??'-'}}</td>
                                         @endforeach
                                         <td>{{$rekomendasi}}</td>
                                     </tr>

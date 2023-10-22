@@ -36,7 +36,7 @@ class AuthController extends Controller
 
     public function home()
     {
-        # code...
+        return view('pages.home');
     }
 
     public function logout(Request $request)
