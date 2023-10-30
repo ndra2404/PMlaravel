@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\PMController;
-
+use App\Http\Controllers\JurusanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,4 +39,9 @@ Route::group(['middleware' => 'auth'], function () {
     //PM
     Route::get('/perhitungan', [PMController::class, 'index'])->name('perhitungan');
     Route::get('/rekomendasi', [PMController::class, 'rekomendasi'])->name('rekomendasi');
+
+    //Jurusan
+    Route::any('/jurusan', [JurusanController::class, 'index'])->name('jurusan');
+    Route::any('/jurusan/delete/{id}', [JurusanController::class, 'delete'])->name('jurusan.delete');
+    Route::any('/jurusan/{id}', [JurusanController::class, 'edit'])->name('jurusan.edit');
 });

@@ -23,16 +23,14 @@
                                             <div class="form-control-wrap">
                                                 <select class="form-select" name='kriteria[{{$row->id}}]' data-sort="false">
                                                     <option value="">Select Choose</option>
-                                                    @if($row->jenis==0)
-                                                        @foreach($jenisInt as $ji)
+                                                    @php
+                                                    $h=DB::table('jenis')->where('jenis',$row->jenis)->get()
+                                                    @endphp
+
+                                                        @foreach($h as $ji)
                                                         <option value="{{$ji->jenis_value}}" {{$nilai==$ji->jenis_value?'selected':''}}>{!!$ji->jenis_name!!}</option>
                                                         @endforeach
-                                                    @endif
-                                                    @if($row->jenis==1)
-                                                        @foreach($jenisHuruf as $ji)
-                                                        <option value="{{$ji->jenis_value}}" {{$nilai==$ji->jenis_value?'selected':''}}>{{$ji->jenis_name}}</option>
-                                                        @endforeach
-                                                    @endif
+
                                                 </select>
                                             </div>
                                         </div>

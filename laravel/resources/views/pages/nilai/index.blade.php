@@ -12,7 +12,7 @@
                     @endif
                     <div class="card">
                         <div class="card-body">
-                        <a href="{{url('addNilai')}}" class='btn btn-primary btn-sm' style='margin-bottom:10px'>Add</a>
+                        <a href="{{url('addNilai')}}" class='btn btn-primary' style='margin-bottom:10px'>Add</a>
                         <table class="datatable-init table" data-nk-container="table-responsive table-border">
                                 <thead>
                                     <tr>
