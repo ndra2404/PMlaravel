@@ -92,7 +92,7 @@
                                         <td>{{$siswa->level}}</td>
                                         <td>
                                             <a data-id="{{$siswa->id}}" data-nama="{{$siswa->name}}" data-email="{{$siswa->email}}" data-level="{{$siswa->id_level}}" class="btn btn-primary btn-sm edit"><em class="icon ni ni-edit"></em></a>
-                                            <a onClick="return confirm('Are you sure you want to delete this data?');" href="{{url('siswa/delete/'.$siswa->id)}}" class="btn btn-danger btn-sm"><em class="icon ni ni-trash"></em></a>
+                                            <a onClick="return confirm('Are you sure you want to delete this data?');" href="{{url('users/delete/'.$siswa->id)}}" class="btn btn-danger btn-sm"><em class="icon ni ni-trash"></em></a>
                                         </td>
                                     </tr>
                                     @endforeach
