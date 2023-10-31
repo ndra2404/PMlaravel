@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -41,5 +42,31 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+    }
+    public function users(request $request){
+        if ($request->isMethod('post')) {
+            if($request->input('id_siswa')!=0){
+                $s = User::find($request->input('id_siswa'));
+                $s->name = $request->input('nama');
+                $s->email = $request->input('asal_sekolah');
+                $s->level = $request->input('level');
+                if($request->input('password')!=""){
+                    $s->password =  Hash::make($request->input('password'));
+                }
+                $s->save();
+                return redirect('/users')->with('status', 'Data berhasil diubah');
+            }else{
+                $s = new User();
+                $s->name = $request->input('nama');
+                $s->email = $request->input('asal_sekolah');
+                $s->password =  Hash::make($request->input('password'));
+                $s->level = $request->input('level');
+                $s->save();
+                return redirect('/users')->with('status', 'Data berhasil ditambahkan');
+            }
+        }
+        $levels = DB::table('level')->get();
+        $siswas = DB::table('users as a')->leftJoin('level as c','c.id','=','a.level')->select('a.id','a.email','a.name','c.level','c.id as id_level')->get();
+        return view('pages.users.index',compact('siswas','levels'));
     }
 }

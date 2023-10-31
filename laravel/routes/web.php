@@ -44,4 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::any('/jurusan', [JurusanController::class, 'index'])->name('jurusan');
     Route::any('/jurusan/delete/{id}', [JurusanController::class, 'delete'])->name('jurusan.delete');
     Route::any('/jurusan/{id}', [JurusanController::class, 'edit'])->name('jurusan.edit');
+
+    //
+    Route::any('/users', [AuthController::class, 'users'])->name('users');
 });
