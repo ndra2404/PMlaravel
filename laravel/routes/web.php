@@ -29,7 +29,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::any('/siswa/delete/{id}', [SiswaController::class, 'deleteSiswa'])->name('siswa.delete');
 
     Route::get('/bobot', [SiswaController::class, 'bobot'])->name('bobot');
+
+    //kriteria
     Route::any('/kriteria', [SiswaController::class, 'kriteria'])->name('kriteria');
+    Route::any('/kriteria/delete/{id}', [SiswaController::class, 'deletekriteria'])->name('kriteria.delete');
+
+    Route::any('/kriteriaMap', [SiswaController::class, 'kriteriaMap'])->name('kriteriaMap');
+
     Route::get('/nilai', [SiswaController::class, 'nilai'])->name('nilai');
     Route::any('/nilai/{id}', [SiswaController::class, 'nilaiEdit'])->name('nilai.edit');
     Route::any('/addNilai', [SiswaController::class, 'addNilai'])->name('addNilai');

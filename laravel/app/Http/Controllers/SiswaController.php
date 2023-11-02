@@ -7,6 +7,10 @@ use App\Models\SiswaModel;
 use App\Models\NilaiModel;
 use App\Models\NilaiMinimalModel;
 use App\Models\BobotModel;
+use App\Models\KriteriaModel;
+use App\Models\KriteriaMapModel;
+use App\Models\JurusanModel;
+
 
 use Illuminate\Support\Facades\DB;
 
@@ -37,19 +41,42 @@ class SiswaController extends Controller
         $post->delete();
         return redirect('/siswa')->with('status', 'Data berhasil dihapus');
     }
+    function kriteriaMap(Request $request){
+        $s = KriteriaMapModel::find($request->input('id_siswa'));
+        $s->tipe = $request->input('asal_sekolah');
+        $s->save();
+        return redirect('/kriteria')->with('status', 'Data berhasil diubah');
+    }
+    function deletekriteria($id){
+        $post = KriteriaModel::findOrFail($id);
+        $post->delete();
+
+        $km = KriteriaMapModel::where('id_kriteria',$id)->delete();
+        return redirect('/kriteria')->with('status', 'Data berhasil dihapus');
+    }
+
     function kriteria(Request $request){
         if ($request->isMethod('post')) {
             if($request->input('id_siswa')!=0){
-                $s = JurusanModel::find($request->input('id_siswa'));
+                $s = KriteriaModel::find($request->input('id_siswa'));
                 $s->kriteria = $request->input('nama');
                 $s->jenis = $request->input('asal_sekolah');
                 $s->save();
                 return redirect('/kriteria')->with('status', 'Data berhasil diubah');
             }else{
-                $s = new JurusanModel();
+                $s = new KriteriaModel();
                 $s->kriteria = $request->input('nama');
                 $s->jenis = $request->input('asal_sekolah');
                 $s->save();
+                $id = $s->id;
+                $jurusan = JurusanModel::all();
+                foreach($jurusan as $c){
+                    $km = new KriteriaMapModel();
+                    $km->id_jurusan = $c->id;
+                    $km->id_kriteria = $id;
+                    $km->tipe = "SF";
+                    $km->save();
+                }
                 return redirect('/kriteria')->with('status', 'Data berhasil ditambahkan');
             }
         }
