@@ -37,7 +37,22 @@ class SiswaController extends Controller
         $post->delete();
         return redirect('/siswa')->with('status', 'Data berhasil dihapus');
     }
-    function kriteria(){
+    function kriteria(Request $request){
+        if ($request->isMethod('post')) {
+            if($request->input('id_siswa')!=0){
+                $s = JurusanModel::find($request->input('id_siswa'));
+                $s->kriteria = $request->input('nama');
+                $s->jenis = $request->input('asal_sekolah');
+                $s->save();
+                return redirect('/kriteria')->with('status', 'Data berhasil diubah');
+            }else{
+                $s = new JurusanModel();
+                $s->kriteria = $request->input('nama');
+                $s->jenis = $request->input('asal_sekolah');
+                $s->save();
+                return redirect('/kriteria')->with('status', 'Data berhasil ditambahkan');
+            }
+        }
         $siswas = DB::table('kriterias')->get();
         $jurusan = DB::table('jurusan')->get();
         return view('pages.kriteria.index',compact('siswas','jurusan'));
