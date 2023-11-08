@@ -8,6 +8,8 @@
                                 <li class="nk-menu-item"><a href="{{url('')}}" class="nk-menu-link"><span
                                             class="nk-menu-icon"><em class="icon ni ni-home"></em></span><span
                                             class="nk-menu-text">Home</span></a></li>
+                                @if(Auth::user()->level==1)
+
                                 <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
                                             class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
                                             class="nk-menu-text">Master Data</span></a>
@@ -51,6 +53,15 @@
                                         </li>
                                     </ul>
                                 </li>
+                                @endif
+                                @if(Auth::user()->level==2)
+                                <li class="nk-menu-item"><a href="{{url('perhitungan')}}" class="nk-menu-link"><span
+                                            class="nk-menu-icon"><em class="icon ni ni-reports"></em></span><span
+                                            class="nk-menu-text">Perhitungan</span></a></li>
+                                            <li class="nk-menu-item"><a href="{{url('rekomendasi')}}" class="nk-menu-link"><span
+                                            class="nk-menu-icon"><em class="icon ni ni-growth-fill"></em></span><span
+                                            class="nk-menu-text">Rekomendasi</span></a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>

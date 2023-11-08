@@ -17,6 +17,7 @@ use App\Http\Controllers\JurusanController;
 */
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::post('/doLogin', [AuthController::class, 'authenticate'])->name('doLogin');
 
 Route::group(['middleware' => 'auth'], function () {
@@ -53,4 +54,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     //
     Route::any('/users', [AuthController::class, 'users'])->name('users');
+    Route::any('/users/delete/{id}', [AuthController::class, 'usersDelete'])->name('users.delete');
 });

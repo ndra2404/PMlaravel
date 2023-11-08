@@ -74,7 +74,7 @@
                                             </div>
                                             <div class="dropdown-content dropdown-content-x-lg py-3">
                                                 <ul class="link-list">
-                                                    <li><a href="#"><em class="icon ni ni-signout"></em> <span>Log
+                                                    <li><a href="{{url('logout')}}"><em class="icon ni ni-signout"></em> <span>Log
                                                                 Out</span></a></li>
                                                 </ul>
                                             </div>

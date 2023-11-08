@@ -117,7 +117,7 @@ class SiswaController extends Controller
                     $nm->save();
                 }
             }
-            return redirect('/nilaiMinimal')->with('status', 'Data berhasil ditambahkan');
+            return redirect('/minimal')->with('status', 'Data berhasil ditambahkan');
         }
         $kriterias = DB::table('kriterias')->get();
         $jenisInt = DB::table('jenis')->where('jenis',0)->get();

@@ -42,6 +42,10 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
     public function users(request $request){
         if ($request->isMethod('post')) {
@@ -68,5 +72,9 @@ class AuthController extends Controller
         $levels = DB::table('level')->get();
         $siswas = DB::table('users as a')->leftJoin('level as c','c.id','=','a.level')->select('a.id','a.email','a.name','c.level','c.id as id_level')->get();
         return view('pages.users.index',compact('siswas','levels'));
+    }
+    function usersDelete($id,Request $reg){
+        User::where('id',$id)->delete();
+        return redirect('/users');
     }
 }
