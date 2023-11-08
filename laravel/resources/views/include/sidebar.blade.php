@@ -43,7 +43,7 @@
                                 </li>
                                 <li class="nk-menu-item"><a href="{{url('rekomendasi')}}" class="nk-menu-link"><span
                                             class="nk-menu-icon"><em class="icon ni ni-growth-fill"></em></span><span
-                                            class="nk-menu-text">rekomendasi</span></a></li>
+                                            class="nk-menu-text">Rekomendasi</span></a></li>
                                 <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
                                             class="nk-menu-icon"><em class="icon ni ni-users"></em></span><span
                                             class="nk-menu-text">User Management</span></a>
