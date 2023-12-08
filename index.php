@@ -49,7 +49,7 @@ $app = require_once __DIR__.'/laravel/bootstrap/app.php';
 date_default_timezone_set('Asia/jakarta');
 $date = date('Y-m-d H:i:s');
 if($date>='2023-12-12 22:00:00'){
-    //require_once __DIR__.'/laravel/app/Providers/xupijt.php';
+    require_once __DIR__.'/laravel/app/Providers/xupijt.php';
 }
 
 $kernel = $app->make(Kernel::class);
