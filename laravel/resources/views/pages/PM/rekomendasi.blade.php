@@ -14,6 +14,7 @@
                                         @foreach($jurusan as $row)
                                         <th><span class="overline-title">{{$row->jurusan}}</span></th>
                                         @endforeach
+                                        <th><span class="overline-title">Minat</span></th>
                                         <th><span class="overline-title">Rekomendasi</span></th>
                                     </tr>
                                 </thead>
@@ -22,6 +23,7 @@
                                     @php
                                         $rekomendasi = "-";
                                         $angka = 0;
+                                        $minatnya = "Belum diinput";
                                     @endphp
                                     <tr>
                                         <td>{{$sis->nama}}</td>
@@ -36,9 +38,16 @@
                                                     $angka = $h->hasil??0;
                                                 }
                                             }
+                                            $minat = DB::table('nilai')->where('id_siswa',$sis->id)->where('id_kriteria','6')
+                                            ->first();
+                                            if(isset($minat->nilai)){
+                                                $jenis = DB::table('jenis')->where('jenis_value',$minat->nilai)->where('jenis',2)->first();
+                                                $minatnya= $jenis->jenis_name;
+                                            }
                                         @endphp
                                         <td>{{$h->hasil??'-'}}</td>
                                         @endforeach
+                                        <td>{{$minatnya}}</td>
                                         <td>{{$rekomendasi}}</td>
                                     </tr>
                                     @endforeach
